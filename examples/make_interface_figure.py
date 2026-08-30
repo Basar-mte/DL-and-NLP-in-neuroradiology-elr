@@ -174,6 +174,10 @@ def main() -> None:
             if os.path.isfile(os.path.join(probe, "main.tex")):
                 out_dir = probe
                 break
+            sub = os.path.join(probe, "manuscript")
+            if os.path.isfile(os.path.join(sub, "main.tex")):
+                out_dir = sub
+                break
     if not out_dir:
         out_dir = os.path.join(HERE, "output")
         os.makedirs(out_dir, exist_ok=True)

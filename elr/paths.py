@@ -7,8 +7,9 @@ either, resolve it:
 
   1. ``ELR_FIGURE_DIR``, if set, wins. Point it at the manuscript directory to
      regenerate the figures in place.
-  2. Otherwise, walk up looking for a directory containing ``main.tex``. That
-     is the manuscript tree.
+  2. Otherwise, walk up looking for a directory containing ``main.tex`` either
+     directly or in a ``manuscript/`` subdirectory. That is the manuscript
+     tree.
   3. Otherwise, write to ``output/`` beside the repository root.
 
 The third case is what a reader who clones this repository gets, and it means
@@ -33,6 +34,9 @@ def figure_dir(start: str) -> str:
         probe = os.path.dirname(probe)
         if os.path.isfile(os.path.join(probe, "main.tex")):
             return probe
+        sub = os.path.join(probe, "manuscript")
+        if os.path.isfile(os.path.join(sub, "main.tex")):
+            return sub
 
     root = os.path.abspath(os.path.join(here, "..", "output"))
     os.makedirs(root, exist_ok=True)

@@ -108,6 +108,9 @@ def figure_dir(start: str) -> str:
         probe = _os.path.dirname(probe)
         if _os.path.isfile(_os.path.join(probe, "main.tex")):
             return probe
+        sub = _os.path.join(probe, "manuscript")
+        if _os.path.isfile(_os.path.join(sub, "main.tex")):
+            return sub
     root = _os.path.abspath(_os.path.join(_os.path.abspath(start), "..", "output"))
     _os.makedirs(root, exist_ok=True)
     return root
