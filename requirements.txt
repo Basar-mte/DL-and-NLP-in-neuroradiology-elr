@@ -1,0 +1,4 @@
+# The harness and its tests need nothing beyond the standard library.
+# These are for the emitters and the figure scripts.
+pydicom>=3.0        # DICOM Structured Reporting output (elr.emit)
+matplotlib>=3.8     # figure generation (examples/make_figure.py, figures/)
