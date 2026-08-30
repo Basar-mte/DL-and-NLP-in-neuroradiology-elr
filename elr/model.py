@@ -5,7 +5,7 @@ carries a coded concept, the image evidence that supports it, and optionally a
 measurement. This module defines that structure, because every metric in
 ``elr.metrics`` is computed over findings rather than over text.
 
-The design commitment stated in Section 7.1 of the manuscript is that a
+The design commitment stated in Section 6.1 of the manuscript is that a
 globally pooled latent carries no spatial index and therefore cannot support
 evidence linkage. The consequence at the data level is this: a Finding without
 a ``region`` is not evidence-linked, and the metrics treat it as ungrounded
@@ -77,7 +77,7 @@ class Region:
 class Measurement:
     """A quantitative value retained as a number, not as prose.
 
-    Requirement of Section 7.3: measurements must survive into the structured
+    Requirement of Section 6.3: measurements must survive into the structured
     report as machine-readable values, so that a follow-up rule can act on
     them without re-parsing the narrative.
     """

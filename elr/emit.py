@@ -1,4 +1,4 @@
-"""Emit an evidence-linked report as an interoperable artefact (Section 7.3).
+"""Emit an evidence-linked report as an interoperable artefact (Section 6.3).
 
 The manuscript's claim is that a report-generating system is defined as much
 by its interfaces as by its model, and that free text returned by an API is

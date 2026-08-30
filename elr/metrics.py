@@ -1,4 +1,4 @@
-"""Reference implementation of the evaluation standard (manuscript Section 7.2).
+"""Reference implementation of the evaluation standard (manuscript Section 6.2).
 
 Each public function here corresponds to one numbered requirement. The point
 of the module is not that these are difficult computations. It is that the
@@ -424,10 +424,15 @@ def risk_coverage(
     """Requirement 6. Selective prediction: what does the system get right
     when it is allowed to decline?
 
-    For a design whose justification is accountability, the ability to abstain
-    matters more than any explanation artefact. Coverage is the fraction of
-    findings the system asserts at a given confidence threshold; risk is the
-    error rate among those it does assert.
+    Coverage is the fraction of findings the system asserts at a given
+    confidence threshold. Risk is the fabrication rate AMONG THOSE ASSERTED,
+    the standard selective-prediction semantics: a statement the system
+    declined to make cannot be wrong. Omissions are deliberately not counted
+    here; the cost of abstaining is priced, severity-weighted, by requirement
+    4, and the two curves must be read together. An earlier version folded
+    omissions into risk, which made abstention look harmful by construction
+    and contradicted the axis label it was plotted under; the regression
+    tests pin the corrected semantics.
     """
     grid = list(thresholds or [i / 10 for i in range(0, 10)])
     out: list[RiskCoveragePoint] = []
@@ -443,12 +448,11 @@ def risk_coverage(
         total_asserted = sum(len(g.positive()) for g in gated)
         total_possible = sum(len(c.positive()) for c in candidates)
         agg = _pooled_agreement(references, gated, **kw)
-        errors = agg.fabrications + agg.omissions
-        denom = agg.hits + errors
+        asserted = agg.hits + agg.fabrications
         out.append(RiskCoveragePoint(
             threshold=t,
             coverage=total_asserted / total_possible if total_possible else float("nan"),
-            risk=errors / denom if denom else float("nan"),
+            risk=agg.fabrications / asserted if asserted else float("nan"),
         ))
     return out
 

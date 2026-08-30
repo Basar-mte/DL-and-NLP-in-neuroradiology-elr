@@ -3,7 +3,7 @@
 Run:  python examples/worked_example.py
 
 The synthetic cohort below is constructed to reproduce the failure mode the
-manuscript describes in Section 7.2: a system that looks strong on a headline
+manuscript describes in Section 6.2: a system that looks strong on a headline
 number while barely using the image at all. The point of the demonstration is
 that the standard *detects* this, and that the detection costs one extra
 inference pass.
@@ -252,7 +252,7 @@ def main() -> None:
     print(f"  cost of requiring evidence  {fmt(concept_f1 - point)}")
     print(f"  single-study example    hits={agg.hits} omissions={agg.omissions} "
           f"fabrications={agg.fabrications}")
-    print("  ** That gap is the entire argument of Section 7.1. The same system,")
+    print("  ** That gap is the entire argument of Section 6.1. The same system,")
     print("     scored on whether its statements are anchored to the region it")
     print("     claims, loses that much. A paper reporting only the first number")
     print("     has not measured the property that makes a report auditable. **")
@@ -360,8 +360,8 @@ def main() -> None:
     print("  This is the dominant risk: an uncorrected generated sentence enters")
     print("  the permanent record. It is measurable only prospectively.")
 
-    # ---- Section 7.3: the interoperable artefact -------------------------
-    rule("Section 7.3  What the system must emit")
+    # ---- Section 6.3: the interoperable artefact -------------------------
+    rule("Section 6.3  What the system must emit")
     out = os.path.join(os.path.dirname(__file__), "output")
     os.makedirs(out, exist_ok=True)
 

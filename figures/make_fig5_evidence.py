@@ -1,4 +1,4 @@
-"""Figure 4: deployed performance, and the methodological base of the evidence.
+"""Figure 5: deployed performance, and the methodological base of the evidence.
 
 Panel (a) reproduces the subgroup sensitivities reported for one regulatorily
 cleared intracranial haemorrhage detector across 101,944 head CT examinations
@@ -21,7 +21,7 @@ from matplotlib.patches import Patch
 from style import (BG, BLUE, INK, MUTE, RED, bottom_legend, figure_dir,
                    panel_label, style)
 
-OUT = os.path.join(figure_dir(os.path.dirname(os.path.abspath(__file__))), "Fig4_evidence.png")
+OUT = os.path.join(figure_dir(os.path.dirname(os.path.abspath(__file__))), "Fig5_evidence.png")
 
 # Deployed sensitivity by subgroup, in percent (Section 8).
 SUBGROUPS = [

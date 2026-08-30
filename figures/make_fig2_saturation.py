@@ -36,6 +36,7 @@ SUBJECTS = [
 ]
 IMAGES = [
     (253,  90.0,  "sharma2022enhanced"),   # Kaggle, 253 images
+    (3064, 99.51, "noreen2020deep"),       # Figshare/CE-MRI, 3064 slices
     (3064, 99.67, "raza2022hybrid"),       # CE-MRI (Cheng), 3064 images
     (3264, 92.13, "khan2022intelligent"),  # Kaggle, 3264 images
 ]

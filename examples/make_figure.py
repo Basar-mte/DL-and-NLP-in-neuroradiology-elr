@@ -2,7 +2,7 @@
 
 Run after worked_example.py:  python examples/make_figure.py
 
-Reads examples/output/results.json and writes Fig3_evaluation.png into the
+Reads examples/output/results.json and writes Fig4_evaluation.png into the
 manuscript directory. The figure is generated from the run rather than
 transcribed from it, so the panel values cannot drift from the code that
 produced them.
@@ -45,7 +45,7 @@ RESULTS = os.path.join(HERE, "output", "results.json")
 
 sys.path.insert(0, os.path.join(HERE, ".."))
 from elr.paths import figure_dir
-OUT = os.path.join(figure_dir(HERE), "Fig3_evaluation.png")
+OUT = os.path.join(figure_dir(HERE), "Fig4_evaluation.png")
 
 BLUE = "#2A78D6"
 RED = "#E34948"

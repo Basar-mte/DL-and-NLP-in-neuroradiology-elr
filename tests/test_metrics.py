@@ -240,6 +240,23 @@ def test_negated_findings_excluded_from_positives():
     assert len(r.positive()) == 1
 
 
+def test_risk_excludes_omissions():
+    """Regression (M1): a statement the system declined to make cannot be
+    wrong. An earlier version counted omissions in risk, which made
+    abstention look harmful by construction."""
+    refs = [rep(f(code="A"), f(code="B"))]
+    cand = [rep(f(code="A"))]          # one correct assertion, one omission
+    pts = risk_coverage(refs, cand, thresholds=[0.0])
+    assert pts[0].risk == 0.0
+
+
+def test_risk_is_fabrication_rate_among_asserted():
+    refs = [rep(f(code="A"))]
+    cand = [rep(f(code="A"), f(code="Z", region=R1_NEAR))]  # 1 hit + 1 fabrication
+    pts = risk_coverage(refs, cand, thresholds=[0.0])
+    assert abs(pts[0].risk - 0.5) < 1e-9
+
+
 if __name__ == "__main__":
     ns = dict(globals())
     tests = [(n, o) for n, o in ns.items() if n.startswith("test_") and callable(o)]

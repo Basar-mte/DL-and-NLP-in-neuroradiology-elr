@@ -2,7 +2,7 @@
 
 A reference implementation of the evaluation standard and interoperability
 substrate specified in "From Pixels to Patterns: Deep Learning and Natural
-Language Processing in Neuroradiology" (Section 7).
+Language Processing in Neuroradiology" (Section 6).
 
 This package deliberately contains no report-generation model. The manuscript's
 argument is that the field's bottleneck is evaluation and accountability rather

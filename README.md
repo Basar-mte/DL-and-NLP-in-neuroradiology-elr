@@ -5,7 +5,7 @@ Reference implementation accompanying:
 > **Deep Learning and Natural Language Processing in Neuroradiology: From
 > Saturated Benchmarks to Evidence-Linked Reporting.**
 > Islam A, Siddik AB, Roky MAB, Ray AS, Abhi SH, Rose TH.
-> *Manuscript under review.*
+> *Manuscript prepared for submission.*
 
 ## What this is, and what it deliberately is not
 
@@ -20,7 +20,7 @@ provided instead is the tooling a study needs in order to report its results in
 a form that can be compared against another study's.
 
 The claim being demonstrated is narrow and checkable: **the evaluation standard
-in Section 7.2 is computable, and the interoperable artefact in Section 7.3 is
+in Section 6.2 is computable, and the interoperable artefact in Section 6.3 is
 constructible with existing standards.** Neither is aspirational. Their absence
 from published systems is a choice.
 
@@ -29,7 +29,7 @@ from published systems is a choice.
 ```
 pip install pydicom
 python examples/worked_example.py     # full worked example, ~2 s
-python tests/test_metrics.py          # 25 tests, no pytest required
+python tests/test_metrics.py          # 27 tests, no pytest required
 ```
 
 No patient data is used or required. The worked example runs on a synthetic
@@ -72,7 +72,7 @@ apparent gap to 1.000   0.368   <-- what a paper would report
 
 Two things are visible here that a headline accuracy conceals. Requiring a
 statement to be anchored to the region it claims costs 0.177 F1 — that gap
-*is* the argument of Section 7.1. And a paper reporting distance-to-perfect
+*is* the argument of Section 6.1. And a paper reporting distance-to-perfect
 would claim a remaining gap of 0.368 when the reference standard only permits
 0.153, overstating it by a factor of 2.4 and misdirecting the next experiment.
 
@@ -91,7 +91,7 @@ correct; it is simply not auditable, which is the property the whole
 formulation exists to provide. The metrics treat it as ungrounded rather than
 silently scoring it as though it were grounded.
 
-## Interoperability (Section 7.3)
+## Interoperability (Section 6.3)
 
 `elr.emit` produces two artefacts from the same `Report`:
 
@@ -107,7 +107,7 @@ silently scoring it as though it were grounded.
 Both are written to `examples/output/` by the worked example and read back to
 show they are real objects rather than formatted strings.
 
-## Two bugs this harness had, and what they illustrate
+## Three bugs this harness had, and what they illustrate
 
 Recorded because both are easy to make and neither is visible in a headline
 number. Both are now regression-tested.
@@ -119,6 +119,10 @@ number. Both are now regression-tested.
    information is concept-level.
 2. **Ungrounded matches reported a fabricated IoU of 1.0**, making the column
    meaningless precisely where it needed to be honest. It now reports `NaN`.
+3. **Selective-prediction risk counted omissions**, so abstaining made "risk"
+   rise by construction, contradicting the axis it was plotted under. Risk is
+   now the fabrication rate among asserted findings; the omission cost of
+   declining is priced, severity-weighted, by requirement 4.
 
 ## Caveats
 
@@ -137,9 +141,9 @@ into which such a metric would slot.
 
 ```
 elr/          the harness: data model, the eight metrics, DICOM SR + FHIR emitters
-tests/        25 behavioural tests, no pytest required
-examples/     worked example on a synthetic cohort, and the Figure 3 generator
-figures/      generators for Figures 2 and 4, from the manuscript's own tables
+tests/        27 behavioural tests, no pytest required
+examples/     worked example on a synthetic cohort, and the Figure 4 generator
+figures/      generators for Figures 2 and 5, from the manuscript's own tables
 ```
 
 Figures are written to `output/` when the repository is used standalone. Set
