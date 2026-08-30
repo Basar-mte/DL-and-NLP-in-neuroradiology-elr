@@ -18,10 +18,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
 
-from style import BG, BLUE, INK, MUTE, RED, bottom_legend, panel_label, style
+from style import (BG, BLUE, INK, MUTE, RED, bottom_legend, figure_dir,
+                   panel_label, style)
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-from elr.paths import figure_dir
 OUT = os.path.join(figure_dir(os.path.dirname(os.path.abspath(__file__))), "Fig4_evidence.png")
 
 # Deployed sensitivity by subgroup, in percent (Section 8).

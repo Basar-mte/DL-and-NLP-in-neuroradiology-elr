@@ -83,3 +83,31 @@ def bottom_legend(fig, handles, ncol=2, y=0.005, fontsize=11.5):
                fontsize=fontsize, handlelength=1.8, handleheight=1.0,
                columnspacing=2.6, labelspacing=0.7,
                bbox_to_anchor=(0.5, y))
+
+
+def figure_dir(start: str) -> str:
+    """Resolve where figures are written.
+
+    ``ELR_FIGURE_DIR`` wins if set. Otherwise walk up looking for a directory
+    containing ``main.tex`` (the manuscript tree) and write the PNGs there.
+    Failing that, write to ``output/`` beside the repository root, which is
+    what a reader who clones this repository gets.
+
+    Defined here rather than imported from the elr package so that these
+    scripts stand alone: figures/ and elr/ sit at different depths in the
+    repository and in the manuscript tree, and a relative import breaks in
+    one of them.
+    """
+    import os as _os
+    env = _os.environ.get("ELR_FIGURE_DIR")
+    if env:
+        _os.makedirs(env, exist_ok=True)
+        return _os.path.abspath(env)
+    probe = _os.path.abspath(start)
+    for _ in range(4):
+        probe = _os.path.dirname(probe)
+        if _os.path.isfile(_os.path.join(probe, "main.tex")):
+            return probe
+    root = _os.path.abspath(_os.path.join(_os.path.abspath(start), "..", "output"))
+    _os.makedirs(root, exist_ok=True)
+    return root

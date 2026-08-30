@@ -20,10 +20,9 @@ import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 from matplotlib.ticker import NullFormatter
 
-from style import BG, BLUE, GRID, INK, ORANGE, RED, bottom_legend, panel_label, style
+from style import (BG, BLUE, GRID, INK, ORANGE, RED, bottom_legend,
+                   figure_dir, panel_label, style)
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-from elr.paths import figure_dir
 OUT = os.path.join(figure_dir(os.path.dirname(os.path.abspath(__file__))), "Fig2_saturation.png")
 
 # (dataset size, accuracy, study key) -- all from Table 3, tab:braintumour.
