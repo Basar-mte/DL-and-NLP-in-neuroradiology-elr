@@ -4,7 +4,7 @@ Reference implementation accompanying:
 
 > **Deep Learning and Natural Language Processing in Neuroradiology: From
 > Saturated Benchmarks to Evidence-Linked Reporting.**
-> Islam A, Siddik AB, Roky MAB, Ray AS, Abhi SH, Rose TH.
+> Islam A, Siddik AB, Roky MAB, Ray AS, Abhi SH, Rose TH, Gullo G, Pugliesi RA.
 > *Manuscript prepared for submission.*
 
 ## What this is, and what it deliberately is not
