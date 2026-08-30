@@ -1,4 +1,4 @@
-# elr — evidence-linked reporting
+# Evidence-linked reporting
 
 Reference implementation accompanying:
 
